@@ -1,5 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using SharpNotification;
+using SharpNotification.Custom;
+using SharpNotification.LocalToast;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -43,6 +45,11 @@ namespace TestApp
 		private void btnAddChoice_Click(object sender, EventArgs e)
 		{
 			new AddChoiceForm(this).ShowDialog();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			CustomNotification.Send(txtTitle.Text, txtMessage.Text);
 		}
 	}
 }

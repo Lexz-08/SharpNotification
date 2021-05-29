@@ -39,6 +39,7 @@ namespace TestApp
 			this.label4 = new System.Windows.Forms.Label();
 			this.btnAddChoice = new System.Windows.Forms.Button();
 			this.btnSend = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -75,9 +76,9 @@ namespace TestApp
 			// 
 			// txtIcon
 			// 
-			this.txtIcon.Location = new System.Drawing.Point(105, 80);
+			this.txtIcon.Location = new System.Drawing.Point(61, 80);
 			this.txtIcon.Name = "txtIcon";
-			this.txtIcon.Size = new System.Drawing.Size(348, 27);
+			this.txtIcon.Size = new System.Drawing.Size(392, 27);
 			this.txtIcon.TabIndex = 5;
 			// 
 			// label3
@@ -85,9 +86,9 @@ namespace TestApp
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(12, 85);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(87, 19);
+			this.label3.Size = new System.Drawing.Size(43, 19);
 			this.label3.TabIndex = 4;
-			this.label3.Text = "Icon (URL):";
+			this.label3.Text = "Icon:";
 			// 
 			// lstChoices
 			// 
@@ -130,10 +131,21 @@ namespace TestApp
 			this.btnSend.UseVisualStyleBackColor = true;
 			this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(12, 212);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(69, 30);
+			this.button1.TabIndex = 10;
+			this.button1.Text = "Other »";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(465, 302);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.btnSend);
 			this.Controls.Add(this.btnAddChoice);
 			this.Controls.Add(this.label4);
@@ -167,6 +179,7 @@ namespace TestApp
 		private System.Windows.Forms.Button btnAddChoice;
 		private System.Windows.Forms.Button btnSend;
 		public System.Windows.Forms.ListBox lstChoices;
+		private System.Windows.Forms.Button button1;
 	}
 }
 

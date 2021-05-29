@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SharpNotification
+namespace SharpNotification.LocalToast
 {
 	public class Notification
 	{
