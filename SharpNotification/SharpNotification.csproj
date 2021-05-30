@@ -54,11 +54,15 @@
       <DependentUpon>Images.resx</DependentUpon>
     </Compile>
     <Compile Include="LocalToast\NotificationSource.cs" />
+    <Compile Include="LocalToast\ToastData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.18362.2005</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

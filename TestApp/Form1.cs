@@ -1,6 +1,4 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
-using SharpNotification;
-using SharpNotification.Custom;
 using SharpNotification.LocalToast;
 using System;
 using System.Collections.Generic;
@@ -35,12 +33,8 @@ namespace TestApp
 
 			Notification notification = new Notification();
 			notification.Generate(txtTitle.Text, txtMessage.Text, choices, txtIcon.Text != string.Empty ? txtIcon.Text : string.Empty);
-			notification.Send();
 
-			notification.Clicked += s =>
-			{
-				Notification.Send("Toast Arguments", s.Argument);
-			};
+			notification.Send();
 		}
 		private void btnAddChoice_Click(object sender, EventArgs e)
 		{
@@ -49,7 +43,7 @@ namespace TestApp
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			CustomNotification.Send(txtTitle.Text, txtMessage.Text);
+			SharpNotification.Custom.Notification.Send(txtTitle.Text, txtMessage.Text);
 		}
 	}
 }
