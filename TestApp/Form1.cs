@@ -11,6 +11,16 @@ namespace TestApp
 		public Form1()
 		{
 			InitializeComponent();
+
+			ToastNotificationManagerCompat.OnActivated += s =>
+			{
+				ToastData data = new ToastData(s.Argument);
+				if (data.GetString("action") == "ok")
+				{
+					MessageBox.Show("You clicked the 'Ok' button! Hooray!", "Toast Data",
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			};
 		}
 
 		protected override void OnFormClosing(FormClosingEventArgs e)
