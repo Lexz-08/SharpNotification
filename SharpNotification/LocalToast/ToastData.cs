@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
+using Windows.Foundation.Collections;
 
 namespace SharpNotification.LocalToast
 {
@@ -9,60 +10,42 @@ namespace SharpNotification.LocalToast
 	public class ToastData
 	{
 		private ToastArguments toastArgs = null;
+		private ValueSet toastInputData = null;
 
 		/// <summary>
 		/// Initializes a new instance of <see cref="ToastData"/> for retrieving the arguments passed by the toast notification when clicked.
 		/// </summary>
 		/// <param name="ToastArguments"></param>
-		public ToastData(string ToastArgumentXML)
+		public ToastData(string ToastArgumentXML, ValueSet ToastInput = null)
 		{
 			ToastArguments args = ToastArguments.Parse(ToastArgumentXML);
 			toastArgs = args;
+			toastInputData = ToastInput;
 		}
 
 		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
+		/// Retrieves the id (identifier) of the button clicked by the user on the notification.
 		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A value that can be converted to your specified type if not listed in this class.</returns>
-		public object GetValue(string strKeyName)
+		/// <returns>A string value representing the button id (identifier).</returns>
+		public string GetButtonId()
 		{
-			return toastArgs.Get(strKeyName);
+			if (toastArgs == null)
+				throw new InvalidOperationException("Couldn't get button id from passed XML string.\n" +
+					"Were there any buttons on the notification?");
+			return toastArgs.Get("action");
 		}
 
 		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
+		/// Retrieves any input the user put into the text boxes (if any) on the notification.
 		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A string value representing the arguments passed by the notification.</returns>
-		public string GetString(string strKeyName) => GetValue(strKeyName).ToString();
-
-		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
-		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A number representing the arguments passed by the notification.</returns>
-		public int GetInt(string strKeyName) => Convert.ToInt32(GetValue(strKeyName).ToString());
-
-		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
-		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A number representing the arguments passed by the notification.</returns>
-		public long GetLong(string strKeyName) => Convert.ToInt64(GetValue(strKeyName).ToString());
-
-		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
-		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A number representing the arguments passed by the notification.</returns>
-		public short GetShort(string strKeyName) => Convert.ToInt16(GetValue(strKeyName).ToString());
-
-		/// <summary>
-		/// Retrieves data from the passed arguments when the user clicks the notification.
-		/// </summary>
-		/// <param name="strKeyName">The name of the argument passed from the click event.</param>
-		/// <returns>A number representing the arguments passed by the notification.</returns>
-		public byte GetByte(string strKeyName) => Convert.ToByte(GetValue(strKeyName).ToString());
+		/// <param name="strInputId">The input for the text box to retrieve the input from.</param>
+		/// <returns>A string value representing the text box's text input.</returns>
+		public string GetInput(string strInputId)
+		{
+			if (toastInputData == null)
+				throw new InvalidOperationException("Couldn't get any input(s) from the notification activate event.\n" +
+					"Were there any inputs/text boxes on the notification?");
+			return toastInputData[strInputId].ToString();
+		}
 	}
 }

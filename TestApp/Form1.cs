@@ -15,12 +15,21 @@ namespace TestApp
 			ToastNotificationManagerCompat.OnActivated += s =>
 			{
 				ToastData data = new ToastData(s.Argument);
-				if (data.GetString("action") == "ok")
+				if (data.GetButtonId() == "ok")
 				{
 					MessageBox.Show("You clicked the 'Ok' button! Hooray!", "Toast Data",
 						MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
+				else if (data.GetButtonId() == "send" && s.UserInput["input"].ToString() == "Toast")
+				{
+					MessageBox.Show("Nice! You inputted '" + s.UserInput["input"].ToString() + "' into the text box! Hooray!", "Toast Data",
+						MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
 			};
+
+			Notification n = new Notification();
+			n.Generate(txtTitle.Text, txtMessage.Text, "Send", "send", new List<string> { "Type something... please..." }, new List<string> { "input" }, txtIcon.Text);
+			n.Send();
 		}
 
 		protected override void OnFormClosing(FormClosingEventArgs e)
@@ -42,7 +51,7 @@ namespace TestApp
 			}
 
 			Notification notification = new Notification();
-			notification.Generate(txtTitle.Text, txtMessage.Text, choices, txtIcon.Text != string.Empty ? txtIcon.Text : string.Empty);
+			notification.Generate(txtTitle.Text, txtMessage.Text, choices, txtIcon.Text);
 
 			notification.Send();
 		}
