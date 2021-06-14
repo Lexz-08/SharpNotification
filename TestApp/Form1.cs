@@ -59,7 +59,6 @@ namespace TestApp
 		{
 			new AddChoiceForm(this).ShowDialog();
 		}
-
 		private void button1_Click(object sender, EventArgs e)
 		{
 			SharpNotification.Custom.Notification.Send(txtTitle.Text, txtMessage.Text);
